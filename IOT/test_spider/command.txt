@@ -6,4 +6,4 @@ cd XXX
 scrapy genspider YYY www.baidu.com
 
 运行：
-scrapy crawl YYY
+scrapy crawl 

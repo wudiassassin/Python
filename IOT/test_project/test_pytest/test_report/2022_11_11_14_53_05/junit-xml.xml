@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="18" skipped="2" tests="49" time="731.209" timestamp="2022-11-11T14:53:05.588157" hostname="PC0268"><testcase classname="test_dir.test_jdtj.TestRjdtjCondition" name="test_rjdtj_condition1" time="17.815" /><testcase classname="test_dir.test_jdtj.TestRjdtjCondition" name="test_rjdtj_condition2" time="14.972" /><testcase classname="test_dir.test_jdtj.TestRjdtjCondition" name="test_rjdtj_condition3" time="19.502" /><testcase classname="test_dir.test_jdtj.TestRjdtjCsvButton" name="test_rjdtj_csvbutton" time="7.696"><failure message="assert True is False&#10; +  where True = &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt;()&#10; +    where &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt; = &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;.is_enabled&#10; +      where &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt; = &lt;page.jdtj_page.JdtjPage object at 0x000001DC8A2A4BB0&gt;.csv_button">self = &lt;test_dir.test_jdtj.TestRjdtjCsvButton object at 0x000001DC8A140760&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_rjdtj_csvbutton(self, browser, login):
+        """
+        名称：检索结果无数据
+        步骤：
+        1、进入日稼动统计页面
+        2、直接点击检索按钮(查询结果无数据)
+        检查点：
+        * CSV按钮不可用
+        """
+        page = JdtjPage(browser)
+        page.sbyx_ele.click()
+        page.rjdtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.search_button.click()
+        assert page.prompt_text.text == "目标数据不存在。"
+&gt;       assert page.csv_button.is_enabled() is False
+E       assert True is False
+E        +  where True = &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt;()
+E        +    where &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt; = &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;.is_enabled
+E        +      where &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt; = &lt;page.jdtj_page.JdtjPage object at 0x000001DC8A2A4BB0&gt;.csv_button
+
+test_dir\test_jdtj.py:118: AssertionError</failure></testcase><testcase classname="test_dir.test_jdtj.TestYjdtjCondition" name="test_yjdtj_condition1" time="13.810" /><testcase classname="test_dir.test_jdtj.TestYjdtjCondition" name="test_yjdtj_condition2" time="10.873"><skipped type="pytest.xfail" message="" /></testcase><testcase classname="test_dir.test_jdtj.TestYjdtjCondition" name="test_yjdtj_condition3" time="20.107" /><testcase classname="test_dir.test_jdtj.TestYjdtjCondition" name="test_yjdtj_condition4" time="5.235"><failure message="assert 'TE-ST-001 : 测试001' != 'TE-ST-001 : 测试001'&#10; +  where 'TE-ST-001 : 测试001' = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;4e658c36-1b8a-44ec-993e-afa77b65e253&quot;)&gt;.text">self = &lt;test_dir.test_jdtj.TestYjdtjCondition object at 0x000001DC8A1310D0&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_yjdtj_condition4(self, browser, login):
+        """
+        名称：无效工厂下的设备不应该显示
+        步骤：
+        1、进入月稼动统计页面
+        2、工厂选择全部(空)
+        检查点：
+        * 检查设备编号下拉列表中是否有无效工厂的设备
+        """
+        page = JdtjPage(browser)
+        page.sbyx_ele.click()
+        page.yjdtj_ele.click()
+        page.iframe.switch_to_frame()
+        for eqp in page.eqp_list:
+&gt;           assert eqp.text != "TE-ST-001 : 测试001"
+E           assert 'TE-ST-001 : 测试001' != 'TE-ST-001 : 测试001'
+E            +  where 'TE-ST-001 : 测试001' = &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="4e658c36-1b8a-44ec-993e-afa77b65e253")&gt;.text
+
+test_dir\test_jdtj.py:221: AssertionError</failure></testcase><testcase classname="test_dir.test_jdtj.TestYjdtjCondition" name="test_yjdtj_condition5" time="9.367"><failure message="selenium.common.exceptions.NoSuchElementException: Message: Could not locate element with index 2">self = &lt;test_dir.test_jdtj.TestYjdtjCondition object at 0x000001DC8A140970&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_yjdtj_condition5(self, browser, login):
+        """
+        名称：工厂下拉框选项
+        步骤：
+        1、进入月稼动统计页面
+        检查点：
+        * 检查工厂下拉框选项是否包含工厂三
+        """
+        page = JdtjPage(browser)
+        page.sbyx_ele.click()
+        page.yjdtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.affiliationId.select_by_index(0)
+        assert page.affiliationId.first_selected_option == ""
+        page.affiliationId.select_by_index(1)
+        assert page.affiliationId.first_selected_option == "特变电工"
+&gt;       page.affiliationId.select_by_index(2)
+
+test_dir\test_jdtj.py:239: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\user\AppData\Local\Programs\Python\Python38\lib\site-packages\poium\selenium.py:446: in select_by_index
+    Select(select_elem).select_by_index(index)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.support.select.Select object at 0x000001DC8A32C4C0&gt;
+index = 2
+
+    def select_by_index(self, index):
+        """Select the option at the given index. This is done by examining the "index" attribute of an
+           element, and not merely by counting.
+    
+           :Args:
+            - index - The option at this index will be selected
+    
+           throws NoSuchElementException If there is no option with specified index in SELECT
+           """
+        match = str(index)
+        for opt in self.options:
+            if opt.get_attribute("index") == match:
+                self._set_selected(opt)
+                return
+&gt;       raise NoSuchElementException("Could not locate element with index %d" % index)
+E       selenium.common.exceptions.NoSuchElementException: Message: Could not locate element with index 2
+
+C:\Users\user\AppData\Roaming\Python\Python38\site-packages\selenium\webdriver\support\select.py:99: NoSuchElementException</failure></testcase><testcase classname="test_dir.test_jdtj.TestYjdtjCsvButton" name="test_yjdtj_csvbutton" time="7.746"><failure message="assert True is False&#10; +  where True = &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt;()&#10; +    where &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt; = &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;.is_enabled&#10; +      where &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt; = &lt;page.jdtj_page.JdtjPage object at 0x000001DC8A324FD0&gt;.csv_button">self = &lt;test_dir.test_jdtj.TestYjdtjCsvButton object at 0x000001DC8A131340&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_yjdtj_csvbutton(self, browser, login):
+        """
+        名称：检索结果无数据
+        步骤：
+        1、进入月稼动统计页面
+        2、直接点击检索按钮(查询结果无数据)
+        检查点：
+        * CSV按钮不可用
+        """
+        page = JdtjPage(browser)
+        page.sbyx_ele.click()
+        page.yjdtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.search_button.click()
+        assert page.prompt_text.text == "目标数据不存在。"
+&gt;       assert page.csv_button.is_enabled() is False
+E       assert True is False
+E        +  where True = &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt;()
+E        +    where &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;&gt; = &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt;.is_enabled
+E        +      where &lt;poium.selenium.Element object at 0x000001DC8A165E50&gt; = &lt;page.jdtj_page.JdtjPage object at 0x000001DC8A324FD0&gt;.csv_button
+
+test_dir\test_jdtj.py:260: AssertionError</failure></testcase><testcase classname="test_dir.test_jjt.TestJjtSearch" name="test_jjt_search1" time="9.188"><failure message="AssertionError: assert '5.6' == '0.0'&#10;  - 0.0&#10;  + 5.6">self = &lt;test_dir.test_jjt.TestJjtSearch object at 0x000001DC8A131A60&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_jjt_search1(self, browser, login):
+        """
+        名称：无效工厂下的设备不应该展示
+        步骤：
+        1、进入集计图页面
+        2、日期选择2022-10-01~2022-10-01(只有这一天无效设备有数据)
+        3、点击检索按钮(查询所有工厂下的设备)
+        检查点：
+        * 检查查询结果左边设备各状态的运行时间是否都为0。
+        """
+        page = JjtPage(browser)
+        page.sbyx_ele.click()
+        page.jjt_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.data_from.send_keys("2022-10-01")
+        page.data_to.send_keys("2022-10-01")
+        page.search_button.click()
+        for time in page.time_list:
+&gt;           assert time.text == "0.0"
+E           AssertionError: assert '5.6' == '0.0'
+E             - 0.0
+E             + 5.6
+
+test_dir\test_jjt.py:36: AssertionError</failure></testcase><testcase classname="test_dir.test_jjt.TestJjtCondition" name="test_jjt_condition1" time="15.012" /><testcase classname="test_dir.test_jjt.TestJjtCondition" name="test_jjt_condition2" time="14.303"><failure message="AssertionError: assert '工厂三' == '特变电工'&#10;  - 特变电工&#10;  + 工厂三">self = &lt;test_dir.test_jjt.TestJjtCondition object at 0x000001DC8A131F10&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_jjt_condition2(self, browser, login):
+        """
+        名称：刷新还原上一次的检索条件
+        步骤：
+        1、进入集计图页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、变更检索条件
+        5、点击刷新按钮
+        检查点：
+        * 检查查询条件是否被还原成上一次的检索条件。
+        """
+        page = JjtPage(browser)
+        page.sbyx_ele.click()
+        page.jjt_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.affiliationId.select_by_value("TBDG3")
+        page.refresh_button.click()
+&gt;       assert page.affiliationId.first_selected_option == "特变电工"
+E       AssertionError: assert '工厂三' == '特变电工'
+E         - 特变电工
+E         + 工厂三
+
+test_dir\test_jjt.py:90: AssertionError</failure></testcase><testcase classname="test_dir.test_jjt.TestJjtCondition" name="test_jjt_condition3" time="15.732" /><testcase classname="test_dir.test_jjt.TestJjtCondition" name="test_jjt_condition4" time="20.527" /><testcase classname="test_dir.test_jjt.TestJjtConditionSort" name="test_jjt_conditionsort1" time="11.376"><failure message="AssertionError: assert 'EM-XL-002 : 数控火焰切割机2#' == 'EM-XL-001 : 数控火焰切割机1#'&#10;  - EM-XL-001 : 数控火焰切割机1#&#10;  ?         ^          ^&#10;  + EM-XL-002 : 数控火焰切割机2#&#10;  ?         ^          ^">self = &lt;test_dir.test_jjt.TestJjtConditionSort object at 0x000001DC8A1046A0&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_jjt_conditionsort1(self, browser, login):
+        """
+        名称：条件排序
+        步骤：
+        1、进入集计图页面
+        2、选择工厂、区域、车间和产线
+        检查点：
+        * 设备下拉列表内的条件是否正常排序
+        """
+        page = JjtPage(browser)
+        page.sbyx_ele.click()
+        page.jjt_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.eqp_select.select_by_index(1)
+&gt;       assert page.eqp_select.first_selected_option == "EM-XL-001 : 数控火焰切割机1#"
+E       AssertionError: assert 'EM-XL-002 : 数控火焰切割机2#' == 'EM-XL-001 : 数控火焰切割机1#'
+E         - EM-XL-001 : 数控火焰切割机1#
+E         ?         ^          ^
+E         + EM-XL-002 : 数控火焰切割机2#
+E         ?         ^          ^
+
+test_dir\test_jjt.py:178: AssertionError</failure></testcase><testcase classname="test_dir.test_login.TestLogin" name="test_login1" time="6.337" /><testcase classname="test_dir.test_login.TestLogin" name="test_login2" time="6.262" /><testcase classname="test_dir.test_login.TestLogin" name="test_login3" time="6.247" /><testcase classname="test_dir.test_login.TestLogin" name="test_login4" time="6.271" /><testcase classname="test_dir.test_login.TestLogin" name="test_login5" time="6.319" /><testcase classname="test_dir.test_qs.TestQsSearch" name="test_qs_search1" time="8.255"><failure message="assert 'TE-ST-001' != 'TE-ST-001'&#10; +  where 'TE-ST-001' = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;acae7161-61f4-4d7c-be28-73e177dca007&quot;)&gt;.text">self = &lt;test_dir.test_qs.TestQsSearch object at 0x000001DC8A13B850&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_qs_search1(self, browser, login):
+        """
+        名称：无效工厂下的设备不应该展示
+        步骤：
+        1、进入趋势页面
+        2、直接点击检索按钮(查询所有工厂下的设备)
+        检查点：
+        * 检查查询结果左边设备列表是否包含无效工厂的设备。
+        """
+        page = QsPage(browser)
+        page.sbyx_ele.click()
+        page.qs_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.search_button.click()
+        page.prompt_close.click()
+        for eqp in page.eqp_list:
+&gt;           assert eqp.text != "TE-ST-001"
+E           assert 'TE-ST-001' != 'TE-ST-001'
+E            +  where 'TE-ST-001' = &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="acae7161-61f4-4d7c-be28-73e177dca007")&gt;.text
+
+test_dir\test_qs.py:34: AssertionError</failure></testcase><testcase classname="test_dir.test_qs.TestQsSearch" name="test_qs_search2" time="15.278"><failure message="assert 64 == 3&#10; +  where 64 = len([&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;dc5aae3e-c7cb-4976-9cee-61ba2e6cdd40&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;6ac87d98-9d87-429d-9bfb-cd1328f19e67&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;e50953aa-6a01-4af4-a9ad-3d4efa7c1766&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;f1a75ae9-3bd9-4772-a367-75e21593b080&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;48ac0a20-de40-43f0-81a9-4183b7fa8edd&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;7563b901-0c9a-41da-ab0c-354a9dbd2cb9&quot;)&gt;, ...])&#10; +    where [&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;dc5aae3e-c7cb-4976-9cee-61ba2e6cdd40&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;6ac87d98-9d87-429d-9bfb-cd1328f19e67&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;e50953aa-6a01-4af4-a9ad-3d4efa7c1766&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;f1a75ae9-3bd9-4772-a367-75e21593b080&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;48ac0a20-de40-43f0-81a9-4183b7fa8edd&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;7563b901-0c9a-41da-ab0c-354a9dbd2cb9&quot;)&gt;, ...] = &lt;page.qs_page.QsPage object at 0x000001DC8A4E07C0&gt;.eqp_list">self = &lt;test_dir.test_qs.TestQsSearch object at 0x000001DC8A13BAC0&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_qs_search2(self, browser, login):
+        """
+        名称：刷新按钮功能测试(刷新按钮不能和检索按钮功能一样)
+        步骤：
+        1、进入趋势页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、工厂选择全部(空)
+        5、点击刷新按钮
+        检查点：
+        * 检查查询结果左边设备列表是否还是第一次检索的设备。
+        """
+        page = QsPage(browser)
+        page.sbyx_ele.click()
+        page.qs_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.prompt_close.click()
+        page.affiliationId.select_by_index(0)
+        page.refresh_button.click()
+        page.prompt_close.click()
+&gt;       assert len(page.eqp_list) == 3
+E       assert 64 == 3
+E        +  where 64 = len([&lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="dc5aae3e-c7cb-4976-9cee-61ba2e6cdd40")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="6ac87d98-9d87-429d-9bfb-cd1328f19e67")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="e50953aa-6a01-4af4-a9ad-3d4efa7c1766")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="f1a75ae9-3bd9-4772-a367-75e21593b080")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="48ac0a20-de40-43f0-81a9-4183b7fa8edd")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="7563b901-0c9a-41da-ab0c-354a9dbd2cb9")&gt;, ...])
+E        +    where [&lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="dc5aae3e-c7cb-4976-9cee-61ba2e6cdd40")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="6ac87d98-9d87-429d-9bfb-cd1328f19e67")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="e50953aa-6a01-4af4-a9ad-3d4efa7c1766")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="f1a75ae9-3bd9-4772-a367-75e21593b080")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="48ac0a20-de40-43f0-81a9-4183b7fa8edd")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="7563b901-0c9a-41da-ab0c-354a9dbd2cb9")&gt;, ...] = &lt;page.qs_page.QsPage object at 0x000001DC8A4E07C0&gt;.eqp_list
+
+test_dir\test_qs.py:62: AssertionError</failure></testcase><testcase classname="test_dir.test_qs.TestQsSearch" name="test_qs_search3" time="15.299"><failure message="assert 64 == 3&#10; +  where 64 = len([&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;50adfe4a-60e7-412a-a282-3484d4160f9e&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;3147df94-4f5f-4341-a65b-7eea4dd92d78&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;d98f415b-be05-4343-8bb4-a07f6ba440b2&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;3a1986eb-2358-4b36-9377-b1810e4dfa05&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;6e28322b-696c-4abe-800b-d001c1282fc5&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;84071347-bbc1-40cd-9853-fed193062195&quot;)&gt;, ...])&#10; +    where [&lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;50adfe4a-60e7-412a-a282-3484d4160f9e&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;3147df94-4f5f-4341-a65b-7eea4dd92d78&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;d98f415b-be05-4343-8bb4-a07f6ba440b2&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;3a1986eb-2358-4b36-9377-b1810e4dfa05&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;6e28322b-696c-4abe-800b-d001c1282fc5&quot;)&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;84071347-bbc1-40cd-9853-fed193062195&quot;)&gt;, ...] = &lt;page.qs_page.QsPage object at 0x000001DC8A4FFEB0&gt;.eqp_list">self = &lt;test_dir.test_qs.TestQsSearch object at 0x000001DC8A13BD00&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_qs_search3(self, browser, login):
+        """
+        名称：期间和运行状态切换
+        步骤：
+        1、进入趋势页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、工厂选择全部(空)
+        5、切换设备运行状态
+        检查点：
+        * 检查查询结果左边设备列表是否还是第一次检索的设备。
+        """
+        page = QsPage(browser)
+        page.sbyx_ele.click()
+        page.qs_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.prompt_close.click()
+        page.affiliationId.select_by_index(0)
+        page.status_select.select_by_value("02")
+        page.prompt_close.click()
+&gt;       assert len(page.eqp_list) == 3
+E       assert 64 == 3
+E        +  where 64 = len([&lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="50adfe4a-60e7-412a-a282-3484d4160f9e")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="3147df94-4f5f-4341-a65b-7eea4dd92d78")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="d98f415b-be05-4343-8bb4-a07f6ba440b2")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="3a1986eb-2358-4b36-9377-b1810e4dfa05")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="6e28322b-696c-4abe-800b-d001c1282fc5")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="84071347-bbc1-40cd-9853-fed193062195")&gt;, ...])
+E        +    where [&lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="50adfe4a-60e7-412a-a282-3484d4160f9e")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="3147df94-4f5f-4341-a65b-7eea4dd92d78")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="d98f415b-be05-4343-8bb4-a07f6ba440b2")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="3a1986eb-2358-4b36-9377-b1810e4dfa05")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="6e28322b-696c-4abe-800b-d001c1282fc5")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="84071347-bbc1-40cd-9853-fed193062195")&gt;, ...] = &lt;page.qs_page.QsPage object at 0x000001DC8A4FFEB0&gt;.eqp_list
+
+test_dir\test_qs.py:90: AssertionError</failure></testcase><testcase classname="test_dir.test_qs.TestQsCondition" name="test_qs_condition1" time="15.922" /><testcase classname="test_dir.test_qs.TestQsCondition" name="test_qs_condition2" time="16.307"><failure message="AssertionError: assert '工厂三' == '特变电工'&#10;  - 特变电工&#10;  + 工厂三">self = &lt;test_dir.test_qs.TestQsCondition object at 0x000001DC8A114220&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_qs_condition2(self, browser, login):
+        """
+        名称：刷新还原上一次的检索条件
+        步骤：
+        1、进入趋势页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、变更检索条件
+        5、点击刷新按钮
+        检查点：
+        * 检查查询条件是否被还原成上一次的检索条件。
+        """
+        page = QsPage(browser)
+        page.sbyx_ele.click()
+        page.qs_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG3")
+        page.refresh_button.click()
+        page.prompt_close.click()
+&gt;       assert page.affiliationId.first_selected_option == "特变电工"
+E       AssertionError: assert '工厂三' == '特变电工'
+E         - 特变电工
+E         + 工厂三
+
+test_dir\test_qs.py:147: AssertionError</failure></testcase><testcase classname="test_dir.test_qs.TestQsCondition" name="test_qs_condition3" time="16.743" /><testcase classname="test_dir.test_qs.TestQsCondition" name="test_qs_condition4" time="21.529" /><testcase classname="test_dir.test_rjdzt.TestRjdztSearch" name="test_rjdzt_search1" time="10.527" /><testcase classname="test_dir.test_rjdzt.TestRjdztSearch" name="test_rjdzt_search2" time="37.290"><skipped type="pytest.xfail" message="" /></testcase><testcase classname="test_dir.test_rjdzt.TestRjdztCondition" name="test_rjdzt_condition1" time="14.119" /><testcase classname="test_dir.test_rjdzt.TestRjdztCondition" name="test_rjdzt_condition2" time="16.471" /><testcase classname="test_dir.test_rjdzt.TestRjdztCondition" name="test_rjdzt_condition3" time="15.017" /><testcase classname="test_dir.test_rjdzt.TestRjdztCondition" name="test_rjdzt_condition4" time="19.698" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkSearch" name="test_sbyxjk_search1[case1]" time="10.141" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkSearch" name="test_sbyxjk_search1[case2]" time="10.116" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkSearch" name="test_sbyxjk_search1[case3]" time="10.071" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkSearch" name="test_sbyxjk_search2" time="6.493"><failure message="assert 'TE-ST-001' != 'TE-ST-001'&#10; +  where 'TE-ST-001' = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;4ff868740e50f392ac96427935d6745d&quot;, element=&quot;e2ec99de-df61-4f39-88a4-b305d7cb8faa&quot;)&gt;.text">self = &lt;test_dir.test_sbyxjk.TestSbyxjkSearch object at 0x000001DC8A200AF0&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_sbyxjk_search2(self, browser, login):
+        """
+        名称：无效工厂下的设备不应该展示
+        步骤：
+        1、进入设备运行监控页面
+        2、直接点击检索按钮(查询所有工厂下的设备)
+        检查点：
+        * 检查查询结果是否包含无效工厂的设备。
+        """
+        page = SbyxjkPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxjk_ele.click()
+        page.iframe.switch_to_frame()
+        page.search_button.click()
+        for eqp in page.eqp_list:
+&gt;           assert eqp.text != "TE-ST-001"
+E           assert 'TE-ST-001' != 'TE-ST-001'
+E            +  where 'TE-ST-001' = &lt;selenium.webdriver.remote.webelement.WebElement (session="4ff868740e50f392ac96427935d6745d", element="e2ec99de-df61-4f39-88a4-b305d7cb8faa")&gt;.text
+
+test_dir\test_sbyxjk.py:79: AssertionError</failure></testcase><testcase classname="test_dir.test_sbyxjk.TestSbyxjkSearch" name="test_sbyxjk_search3" time="34.491"><failure message="AssertionError: assert [] == ['EM-XL-001',..., 'EM-XL-003']&#10;  Right contains 3 more items, first extra item: 'EM-XL-001'&#10;  Full diff:&#10;  - ['EM-XL-001', 'EM-XL-002', 'EM-XL-003']&#10;  + []">self = &lt;test_dir.test_sbyxjk.TestSbyxjkSearch object at 0x000001DC8A200D00&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+test_login = None
+
+    def test_sbyxjk_search3(self, browser, test_login):
+        """
+        名称：默认显示登陆用户所属车间的设备
+        步骤：
+        1、调用test_login,用test用户登录(下面有设备EM-XL-001,2,3)
+        2、进入设备运行监控页面
+        检查点：
+        * 检查是否默认显示登陆用户所属车间的设备。
+        """
+        page = SbyxjkPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxjk_ele.click()
+        page.iframe.switch_to_frame()
+        web_data = []
+        for item in page.eqp_list:
+            eqpid = item.text
+            web_data.append(eqpid)
+&gt;       assert web_data == ['EM-XL-001', 'EM-XL-002', 'EM-XL-003']
+E       AssertionError: assert [] == ['EM-XL-001',..., 'EM-XL-003']
+E         Right contains 3 more items, first extra item: 'EM-XL-001'
+E         Full diff:
+E         - ['EM-XL-001', 'EM-XL-002', 'EM-XL-003']
+E         + []
+
+test_dir\test_sbyxjk.py:98: AssertionError</failure></testcase><testcase classname="test_dir.test_sbyxjk.TestSbyxjkCondition" name="test_sbyxjk_condition1" time="14.694" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkCondition" name="test_sbyxjk_condition2" time="16.320" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkCondition" name="test_sbyxjk_condition3" time="14.628" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkCondition" name="test_sbyxjk_condition4" time="19.510" /><testcase classname="test_dir.test_sbyxjk.TestSbyxjkColor" name="test_sbyxjk_color" time="49.850"><failure message="AssertionError: assert 'white' == 'black'&#10;  - black&#10;  + white">self = &lt;test_dir.test_sbyxjk.TestSbyxjkColor object at 0x000001DC8A200A90&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_sbyxjk_color(self, browser, login):
+        """
+        名称：自动刷新设备编号字体颜色
+        步骤：
+        1、进入设备运行监控页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、等待40秒自动刷新(自动刷新时间默认30秒)
+        检查点：
+        * 检查运行中(绿色)设备的设备ID背景色是否变成白色。
+        """
+        page = SbyxjkPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxjk_ele.click()
+        page.iframe.switch_to_frame()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        for k in range(0, 40, 5):
+            print(40 - k)
+            sleep(5)
+        for item in page.eqp_list:
+            color = re.findall('background-color: (.*?);', item.get_attribute('style'))[0]
+            id_color = re.findall('.*?; color: (.*?);', item.get_attribute('style'))
+            if color == "lime":
+                if id_color:
+                    assert id_color[0] == "black"
+    
+                else:
+                    id_color = "white"
+&gt;                   assert id_color == "black"
+E                   AssertionError: assert 'white' == 'black'
+E                     - black
+E                     + white
+
+test_dir\test_sbyxjk.py:249: AssertionError</failure></testcase><testcase classname="test_dir.test_sbyxtj.TestSbyxtjCondition" name="test_sbyxtj_condition1" time="15.122" /><testcase classname="test_dir.test_sbyxtj.TestSbyxtjCondition" name="test_sbyxtj_condition2" time="14.251"><failure message="AssertionError: assert '' == '特变电工'&#10;  - 特变电工">self = &lt;test_dir.test_sbyxtj.TestSbyxtjCondition object at 0x000001DC8A20DFD0&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_sbyxtj_condition2(self, browser, login):
+        """
+        名称：刷新还原上一次的检索条件
+        步骤：
+        1、进入设备运行统计页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、变更检索条件
+        5、点击刷新按钮
+        检查点：
+        * 检查查询条件是否被还原成上一次的检索条件。
+        """
+        page = SbyxtjPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.affiliationId.select_by_value("TBDG3")
+        page.refresh_button.click()
+&gt;       assert page.affiliationId.first_selected_option == "特变电工"
+E       AssertionError: assert '' == '特变电工'
+E         - 特变电工
+
+test_dir\test_sbyxtj.py:66: AssertionError</failure></testcase><testcase classname="test_dir.test_sbyxtj.TestSbyxtjCondition" name="test_sbyxtj_condition3" time="13.778"><failure message="selenium.common.exceptions.NoSuchElementException: Message: No options are selected">self = &lt;test_dir.test_sbyxtj.TestSbyxtjCondition object at 0x000001DC8A217250&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_sbyxtj_condition3(self, browser, login):
+        """
+        名称：条件关联测试1
+        步骤：
+        1、进入设备运行统计页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、变更工厂为工厂三(下面什么都没有)
+        检查点：
+        * 区域变成全部，车间和产线置灰。
+        """
+        page = SbyxtjPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.affiliationId.select_by_value("TBDG3")
+        assert page.affiliationId.first_selected_option == "工厂三"
+&gt;       assert page.areaId.first_selected_option == "全部"
+
+test_dir\test_sbyxtj.py:94: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\user\AppData\Local\Programs\Python\Python38\lib\site-packages\poium\selenium.py:455: in first_selected_option
+    sel_text = Select(select_elem).first_selected_option.text
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.support.select.Select object at 0x000001DC8A3CD790&gt;
+
+    @property
+    def first_selected_option(self):
+        """The first selected option in this select tag (or the currently selected option in a
+        normal select)"""
+        for opt in self.options:
+            if opt.is_selected():
+                return opt
+&gt;       raise NoSuchElementException("No options are selected")
+E       selenium.common.exceptions.NoSuchElementException: Message: No options are selected
+
+C:\Users\user\AppData\Roaming\Python\Python38\site-packages\selenium\webdriver\support\select.py:61: NoSuchElementException</failure></testcase><testcase classname="test_dir.test_sbyxtj.TestSbyxtjCondition" name="test_sbyxtj_condition4" time="14.647"><failure message="assert True is False&#10; +  where True = &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt;&gt;()&#10; +    where &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt;&gt; = &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt;.is_enabled&#10; +      where &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt; = &lt;page.sbyxtj_page.SbyxtjPage object at 0x000001DC8A3BCCA0&gt;.workShopId">self = &lt;test_dir.test_sbyxtj.TestSbyxtjCondition object at 0x000001DC8A217490&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_sbyxtj_condition4(self, browser, login):
+        """
+        名称：条件关联测试2
+        步骤：
+        1、进入设备运行统计页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、变更工厂为全部(空)
+        5、变更工厂为特变电工
+        检查点：
+        * 工厂变更为全部的时候，区域、车间和产线置灰。
+        * 工厂变更特变电工的时候，区域变成全部，车间和产线置灰。
+        """
+        page = SbyxtjPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.affiliationId.select_by_index(0)
+        assert page.affiliationId.first_selected_option == ""
+        assert page.areaId.is_enabled() is False
+&gt;       assert page.workShopId.is_enabled() is False
+E       assert True is False
+E        +  where True = &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt;&gt;()
+E        +    where &lt;bound method Element.is_enabled of &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt;&gt; = &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt;.is_enabled
+E        +      where &lt;poium.selenium.Element object at 0x000001DC8A20DB80&gt; = &lt;page.sbyxtj_page.SbyxtjPage object at 0x000001DC8A3BCCA0&gt;.workShopId
+
+test_dir\test_sbyxtj.py:124: AssertionError</failure></testcase><testcase classname="test_dir.test_sbyxtj.TestSbyxtjCondition" name="test_sbyxtj_condition5" time="15.550"><failure message="AssertionError: assert '' == '特变电工'&#10;  - 特变电工">self = &lt;test_dir.test_sbyxtj.TestSbyxtjCondition object at 0x000001DC8A2176D0&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="4ff868740e50f392ac96427935d6745d")&gt;
+login = None
+
+    def test_sbyxtj_condition5(self, browser, login):
+        """
+        名称：按运行状态排序
+        步骤：
+        1、进入设备运行统计页面
+        2、选择工厂、区域、车间和产线
+        3、点击检索按钮
+        4、点击运行状态进行排序
+        检查点：
+        * 检查条件是否被重置。
+        """
+        page = SbyxtjPage(browser)
+        page.sbyx_ele.click()
+        page.sbyxtj_ele.click()
+        page.iframe.switch_to_frame()
+        page.prompt_close.click()
+        page.affiliationId.select_by_value("TBDG")
+        page.areaId.select_by_value("EA-2000")
+        page.workShopId.select_by_value("SA-HJCJ")
+        page.workLineId.select_by_value("SA-HJ001")
+        page.search_button.click()
+        page.status_button.click()
+&gt;       assert page.affiliationId.first_selected_option == "特变电工"
+E       AssertionError: assert '' == '特变电工'
+E         - 特变电工
+
+test_dir\test_sbyxtj.py:154: AssertionError</failure></testcase></testsuite></testsuites>
