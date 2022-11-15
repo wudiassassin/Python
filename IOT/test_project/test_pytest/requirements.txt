@@ -1,7 +1,0 @@
-pytest
-pytest-html
-pytest-rerunfailures
-pytest-base-url
-click
-poium
-webdriver-manager

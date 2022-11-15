@@ -1,0 +1,9 @@
+创建项目：
+scrapy startproject XXX
+
+创建spider：
+cd XXX
+scrapy genspider YYY www.baidu.com
+
+运行：
+scrapy crawl YYY
